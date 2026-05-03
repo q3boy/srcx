@@ -1,0 +1,5 @@
+{{setvar::pov_target::
+<pov>
+自定义
+</pov>
+}}

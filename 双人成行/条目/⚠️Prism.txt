@@ -1,0 +1,5 @@
+<Prism>
+# 在输出的正文中必须遵循以下要求
+综合调节: {{getvar::Prism_none}}{{getvar::anti_metaphor}}{{getvar::anti_baimiao}}{{getvar::Sdwx}}{{getvar::anti_explain}}{{getvar::anti_reveal}}{{getvar::anti_voice_desc}}{{getvar::anti_micro}}{{getvar::anti_synesthesia}}{{getvar::anti_dominate}}{{getvar::anti_chaoxiong}}{{getvar::anti_shaguanlian}}{{getvar::anti_Tailor}}{{getvar::anti_Total}}{{getvar::limited}}
+</Prism>
+{{getvar::deep_prism}}

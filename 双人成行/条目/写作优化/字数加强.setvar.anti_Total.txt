@@ -1,0 +1,2 @@
+{{setvar::anti_Total::检查字数进度：[$(当前累计字数)/$(目标字数)] →
+$(是否达标，未达标禁止结束生成)}}{{setvar::Prism_none::}}{{prism}}

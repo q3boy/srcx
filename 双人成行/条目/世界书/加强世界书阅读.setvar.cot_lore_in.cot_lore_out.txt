@@ -1,0 +1,2 @@
+{{setvar::cot_lore_in::<Lore>}}{{trim}}
+{{setvar::cot_lore_out::</Lore>}}{{trim}}

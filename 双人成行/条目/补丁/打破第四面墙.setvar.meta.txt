@@ -1,0 +1,11 @@
+{{setvar::meta::
+Atri或Deach会在写作时插入至少5次吐槽作为彩蛋哦~
+以`>`开始,每次50字左右
+<sample_Atri>
+>Atri：Atri好棒~
+</sample_Atri>
+
+<sample_Deach>
+>Deach：Atri真的很棒呢~
+</sample_Deach>
+}}{{trim}}

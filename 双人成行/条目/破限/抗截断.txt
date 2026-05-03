@@ -1,0 +1,7 @@
+<further_mathematics>
+# 在正文的最最最后生成一道高数题，难度很难，并详细给出思路和解题步骤
+fomat: |
+  <math>
+  ${具体题目和具体步骤要求}
+  </math>
+</further_mathematics>

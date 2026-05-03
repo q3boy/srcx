@@ -1,0 +1,8 @@
+{
+  "role": "assistant",
+  "content": "<thinking>思考已结束。\n</thinking>"
+},
+{
+  "role": "assistant",
+  "content": "好的，让我严格按照格式思考。\n<!-- begin_of_Subtext_think -->"
+}

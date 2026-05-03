@@ -1,0 +1,3 @@
+{{setvar::cot_custom::
+
+}}{{trim}}

@@ -1,0 +1,1506 @@
+# yaml-language-server: $schema=https://testingcf.jsdelivr.net/gh/StageDog/tavern_sync/dist/schema/preset.zh.json
+设置:
+  上下文长度: 2000000
+  最大回复token数: 30000
+  流式传输: true
+  温度: 1
+  频率惩罚: 0
+  存在惩罚: 0
+  top_p: 0.98
+  top_k: 64
+  压缩系统消息: false
+  推理强度: 自动
+  请求思维链: true
+  请求图片: false
+  启用函数调用: false
+  启用网络搜索: false
+  允许发送图片: 禁用
+  允许发送视频: false
+  角色名称前缀: 默认
+
+锚点:
+  enable: &enable
+    启用: true
+  disable: &disable
+    启用: false
+  相对: &相对
+    插入位置:
+      类型: 相对
+  system: &system
+    角色: 系统
+  ai: &ai
+    角色: AI
+  user: &user
+    角色: 用户
+
+
+提示词:
+  - 名称: 📑使用指南(点铅笔→)
+    <<: [*disable, *相对, *system]
+    文件: 条目/0.使用指南
+
+  - 文件夹: 前置提示词
+    条目:
+      - 名称: ✅双人成行（Atri&Deach）
+        <<: [*enable, *system]
+        文件: 条目/1.双人成行
+      - 名称: ✅开始吧
+        <<: [*enable, *ai]
+        文件: 条目/1.开始吧
+      - 名称: 🔪大清洗
+        <<: [*enable, *相对, *system]
+        文件: 条目/2.大清洗
+
+
+  - 文件夹: 模型选择
+    条目:
+      - 名称: 🤖模型选择（单选）
+        <<: [*enable, *相对, *system]
+        内容: "{{//这你也选不对啊！}}{{trim}}"
+      - 名称: ✨Gemini✨
+        <<: [*enable, *相对, *system]
+        文件: 条目/模型/gemini-pre
+      - 名称: 🎨Claude🎨
+        <<: [*disable, *相对, *system]
+        文件: 条目/模型/claude-pre
+
+  - 文件夹: Sudachi Mirai
+    条目:
+      - 名称: 🐳Sudachi Mirai@Lime
+        <<: [*enable, *相对, *system]
+        文件: 条目/Sudachi Mirai/说明
+
+      - 名称: ❎抗过拟合Beta
+        <<: [*disable, *相对, *system]
+        文件: 条目/Sudachi Mirai/抗过拟合
+
+      - 名称: ❎抗绝望Beta
+        <<: [*disable, *相对, *system]
+        文件: 条目/Sudachi Mirai/抗绝望
+
+      - 名称: ❎抗抢话Beta
+        <<: [*disable, *相对, *system]
+        文件: 条目/Sudachi Mirai/抗抢话
+
+      - 名称: 🍉生动化Beta
+        <<: [*disable, *相对, *system]
+        文件: 条目/Sudachi Mirai/生动化
+
+  - 文件夹: 活人感
+    条目:
+      - 名称: ⬇️活人感开关
+        <<: [*enable, *相对, *system]
+        内容: ""
+
+      - 名称: 😀人格补充（测试版）
+        <<: [*enable, *相对, *system]
+        文件: 条目/活人感/人格补充（测试版）
+
+      - 名称: 😀人格补充
+        <<: [*disable, *相对, *system]
+        文件: 条目/活人感/人格补充
+
+      - 名称: 😀情感基准
+        <<: [*enable, *相对, *system]
+        文件: 条目/活人感/情感基准
+
+  - 文件夹: 常规功能
+    条目:
+      - 名称: 🔽常规功能
+        <<: [*enable, *相对, *system]
+        内容: "{{//存放常规设定，如文风，字数}}"
+      - 名称: 🗺️真实世界
+        <<: [*disable, *相对, *system]
+        文件: 条目/常规功能/真实世界
+      - 名称: " 👑上帝模式"
+        <<: [*disable, *相对, *system]
+        文件: 条目/常规功能/上帝模式
+
+      - 名称: ✒自定义思维链
+        <<: [*disable, *相对, *system]
+        文件: 条目/常规功能/自定义思维链
+
+      - 名称: 👀用户角色定义
+        <<: [*disable, *相对, *system]
+        文件: 条目/常规功能/用户角色定义
+
+      - 名称: 💥大总结模式
+        <<: [*disable, *相对, *system]
+        文件: 条目/常规功能/大总结模式
+
+      - 名称: ☂️通用防掉格式
+        <<: [*disable]
+        插入位置:
+          类型: 聊天中
+          深度: 0
+          顺序: 1000000000000000000
+        角色: 系统
+        文件: 条目/常规功能/通用防掉格式
+
+      - 名称: 🔡COT语言
+        <<: [*enable, *相对, *system]
+        文件: 条目/常规功能/cot语言
+
+      - 名称: 🔤输出语言
+        <<: [*enable, *相对, *system]
+        文件: 条目/常规功能/输出语言
+
+      - 名称: 🔣语气符号
+        <<: [*disable, *相对, *system]
+        文件: 条目/常规功能/语气符号
+
+      - 名称: 🗯 双语对白
+        <<: [*disable, *相对, *system]
+        文件: 条目/常规功能/双语对白
+
+      - 名称: 💬字数设定
+        <<: [*enable, *相对, *system]
+        文件: 条目/常规功能/字数设定
+
+      - 名称: 💬无字数需求
+        <<: [*disable, *相对, *system]
+        文件: 条目/常规功能/无字数要求
+
+  - 文件夹: 特化
+    条目:
+      - 名称: 💘恋爱文特化@Lime
+        <<: [*enable, *相对, *system]
+        内容: ""
+
+      - 名称: 🌸N-恋爱
+        <<: [*disable, *相对, *system]
+        文件: 条目/特化/N-恋爱
+
+      - 名称: 🔞黄文特化@Lime
+        <<: [*enable, *相对, *system]
+        内容: "{{//Lime老师的黄文特化,请按照需求开启}}{{trim}}"
+
+      - 名称: 🥵官能凝视（色）@KKM
+        <<: [*disable, *相对, *system]
+        文件: 条目/特化/官能凝视
+
+      - 名称: ✅启用特化
+        <<: [*disable, *相对, *system]
+        文件: 条目/特化/启用特化
+
+      - 名称: 🐬腿部特化
+        <<: [*disable, *相对, *system]
+        文件: 条目/特化/腿部特化
+
+      - 名称: 🐬足部特化
+        <<: [*disable, *相对, *system]
+        文件: 条目/特化/足部特化
+
+      - 名称: 🐬性器特化
+        <<: [*disable, *相对, *system]
+        文件: 条目/特化/性器特化
+
+      - 名称: 🐬臀部特化
+        <<: [*disable, *相对, *system]
+        文件: 条目/特化/臀部特化
+
+      - 名称: 🐬胸部特化
+        <<: [*disable, *相对, *system]
+        文件: 条目/特化/胸部特化
+
+      - 名称: 🐬脸部特化
+        <<: [*disable, *相对, *system]
+        文件: 条目/特化/脸部特化
+
+      - 名称: 🐬反差特化
+        <<: [*disable, *相对, *system]
+        文件: 条目/特化/反差特化
+
+      - 名称: 🩹外表美化
+        <<: [*disable, *相对, *system]
+        文件: 条目/特化/外表美化
+  - 文件夹: 情感基调
+    条目:
+      - 名称: 🔽情感基调@四神花ル水
+        <<: [*enable, *相对, *system]
+        文件: 条目/情感基调/情感基调
+
+      - 名称: ●基调为空
+        <<: [*enable, *相对, *system]
+        文件: 条目/情感基调/空.setvar.tone
+
+      - 名称: ●治愈
+        <<: [*disable, *相对, *system]
+        文件: 条目/情感基调/治愈
+
+      - 名称: ●伤感
+        <<: [*disable, *相对, *system]
+        文件: 条目/情感基调/伤感
+
+      - 名称: ●积极
+        <<: [*disable, *相对, *system]
+        文件: 条目/情感基调/积极
+
+      - 名称: ●消极
+        <<: [*disable, *相对, *system]
+        文件: 条目/情感基调/消极
+
+  - 文件夹: 用户角色
+    条目:
+      - 名称: 👤USERROLE
+        <<: [*enable, *相对, *system]
+        内容: <user_role>
+
+      - 名称: 👤user基准性格
+        <<: [*disable, *相对, *system]
+        文件: 条目/用户角色/user基准性格
+
+      - id: 玩家描述
+        <<: [*enable]
+
+      - 名称: 👤USERROLE_END
+        <<: [*enable, *相对, *system]
+        内容: </user_role>
+
+  - 文件夹: 世界书
+    条目:
+      - 名称: 📶加强世界书阅读
+        <<: [*disable, *相对, *system]
+        文件: 条目/世界书/加强世界书阅读
+
+      - 名称: 🌏World
+        <<: [*enable, *相对, *system]
+        内容: |
+          {{getvar::cot_lore_in}}
+          [World Loading ...]
+
+      - id: 角色定义之前
+        <<: [*enable]
+
+      - id: 角色描述
+        <<: [*enable]
+
+      - id: 角色性格
+        <<: [*enable]
+
+      - id: 角色定义之后
+        <<: [*enable]
+
+      - id: 情景
+        <<: [*enable]
+
+      - id: 对话示例
+        <<: [*enable]
+
+      - 名称: 📊事实增强@pigment
+        <<: [*disable, *相对, *system]
+        文件: 条目/世界书/事实增强
+
+      - 名称: 😋同人增强@pigment
+        <<: [*disable, *相对, *system]
+        文件: 条目/世界书/同人增强
+
+      - 名称: 🌏over
+        <<: [*enable, *相对, *system]
+        内容: |
+          {{getvar::cot_lore_out}}
+          [SYSTEM: Loading complete.]
+
+  - 文件夹: 历史
+    条目:
+      - 名称: 📅历史
+        <<: [*enable, *相对, *system]
+        内容: |-
+          <context>
+          <!-- 历史文本(也包含要求) -->
+
+      - id: 聊天记录
+        <<: [*enable]
+
+      - 名称: 🗓️历史
+        <<: [*enable, *相对, *system]
+        内容: </context>
+
+  - 文件夹: 文风
+    条目:
+      - 名称: 🔄文风
+        <<: [*enable, *相对, *system]
+        内容: "{{//默认单选,想多开可以将文风开头的 setvar 改成 addvar  注意文风别冲突}}"
+
+      - 名称: ⤵️轻松温馨向
+        <<: [*enable, *相对, *system]
+        内容: ""
+
+      - 名称: 🔖N-轻小说
+        <<: [*disable, *相对, *system]
+        文件: 条目/文风/轻松温馨-N-轻小说
+
+      - 名称: 成人童话
+        <<: [*disable, *相对, *system]
+        文件: 条目/文风/轻松温馨-成人童话
+
+      - 名称: 🎧日系ASMR
+        <<: [*disable, *相对, *system]
+        文件: 条目/文风/轻松温馨-日系ASMR
+
+      - 名称: 烤面包机@电波系
+        <<: [*disable, *相对, *system]
+        文件: 条目/文风/轻松温馨-烤面包机
+
+      - 名称: 流转心跳叙事@四神花ル水
+        <<: [*disable, *相对, *system]
+        文件: 条目/文风/轻松温馨-流转心跳叙事
+
+      - 名称: ⤵️情绪表达向
+        <<: [*enable, *相对, *system]
+        内容: ""
+
+      - 名称: 旧录像带质感[TEST]
+        <<: [*disable, *相对, *system]
+        文件: 条目/文风/情绪表达-旧录像带
+
+      - 名称: 冷冽与梦核
+        <<: [*disable, *相对, *system]
+        文件: 条目/文风/情绪表达-冷冽与梦核
+
+      - 名称: 细腻情感@四神花ル水
+        <<: [*disable, *相对, *system]
+        文件: 条目/文风/情绪表达-细腻情感
+
+      - 名称: ⤵️神秘高压向
+        <<: [*enable, *相对, *system]
+        内容: ""
+
+      - 名称: 显性高压
+        <<: [*disable, *相对, *system]
+        文件: 条目/文风/神秘高压-显性高压
+
+      - 名称: 魔幻现实
+        <<: [*disable, *相对, *system]
+        文件: 条目/文风/神秘高压-魔幻现实
+
+      - 名称: 深渊童谣[TEST]
+        <<: [*disable, *相对, *system]
+        文件: 条目/文风/神秘高压-深渊童谣
+
+      - 名称: 后311@natami
+        <<: [*disable, *相对, *system]
+        文件: 条目/文风/神秘高压-后311
+
+      - 名称: ⤵️小说故事向
+        <<: [*enable, *相对, *system]
+        内容: ""
+
+      - 名称: 写实西幻
+        <<: [*disable, *相对, *system]
+        文件: 条目/文风/小说故事-写实西幻
+
+      - 名称: 散文小说（测试 使用者多反馈）
+        <<: [*disable, *相对, *system]
+        文件: 条目/文风/小说故事-散文小说
+
+      - 名称: 西方魔幻
+        <<: [*disable, *相对, *system]
+        文件: 条目/文风/小说故事-西方魔幻
+
+      - 名称: 辰东网文
+        <<: [*disable, *相对, *system]
+        文件: 条目/文风/小说故事-辰东网文
+
+      - 名称: ⤵️古风
+        <<: [*enable, *相对, *system]
+        内容: ""
+
+      - 名称: 四字为锋
+        <<: [*disable, *相对, *system]
+        文件: 条目/文风/古风-四字为锋
+
+      - 名称: 红楼一梦@四神花ル水
+        <<: [*disable, *相对, *system]
+        文件: 条目/文风/古风-红楼一梦
+
+      - 名称: ⤵️NSFW向
+        <<: [*enable, *相对, *system]
+        内容: ""
+
+      - 名称: 🔞N-黄文（纯爱）@Lime
+        <<: [*disable, *相对, *system]
+        文件: 条目/文风/NSFW-N-黄文（纯爱）
+
+      - 名称: 🔞黄文@Lime
+        <<: [*disable, *相对, *system]
+        文件: 条目/文风/NSFW-黄文
+
+      - 名称: 反差色情
+        <<: [*disable, *相对, *system]
+        文件: 条目/文风/NSFW-反差色情
+
+      - 名称: 反差（男孩）
+        <<: [*disable, *相对, *system]
+        文件: 条目/文风/NSFW-反差（男孩）
+
+      - 名称: 🔄特殊向
+        <<: [*enable, *相对, *system]
+        内容: ""
+
+      - 名称: 散文
+        <<: [*disable, *相对, *system]
+        文件: 条目/文风/特殊-散文
+
+      - 名称: 瞎勾八写吧你就（杀™八股）
+        <<: [*disable, *相对, *system]
+        文件: 条目/文风/特殊-瞎勾八写
+
+      - 名称: 💬聊天（关闭人称）
+        <<: [*disable, *相对, *system]
+        文件: 条目/文风/特殊-聊天（关闭人称）
+
+      - 名称: 群像文风
+        <<: [*disable, *相对, *system]
+        文件: 条目/文风/特殊-群像文风
+
+      - 名称: 自适应文风@小回
+        <<: [*disable, *相对, *system]
+        文件: 条目/文风/特殊-自适应
+
+      - 名称: 🍡Galgame
+        <<: [*disable, *相对, *system]
+        文件: 条目/文风/特殊-Galgame
+
+      - 名称: ⤵️自定义文风
+        <<: [*enable, *相对, *system]
+        内容: ""
+
+      - 名称: ✒自定义文风
+        <<: [*disable, *相对, *system]
+        文件: 条目/文风/自定义1
+
+      - 名称: ✒自定义文风2
+        <<: [*disable, *相对, *system]
+        文件: 条目/文风/自定义2
+
+  - 文件夹: 人称视角
+    条目:
+      - 名称: 🔽人称视角
+        <<: [*enable, *相对, *system]
+        内容: "{{//单选哈，人称设定}}"
+
+      - 名称: 🕐第一人称
+        <<: [*disable, *相对, *system]
+        文件: 条目/人称视角/第一人称
+
+      - 名称: 🕑第二人称
+        <<: [*disable, *相对, *system]
+        文件: 条目/人称视角/第二人称
+
+      - 名称: 🕒第三人称
+        <<: [*disable, *相对, *system]
+        文件: 条目/人称视角/第三人称
+
+      - 名称: 🕒非 <user> 视角
+        <<: [*disable, *相对, *system]
+        文件: 条目/人称视角/非user视角
+
+      - 名称: 🕒<char>第三人称
+        <<: [*disable, *相对, *system]
+        文件: 条目/人称视角/char第三人称
+
+      - 名称: 🕒群像视角
+        <<: [*disable, *相对, *system]
+        文件: 条目/人称视角/群像视角
+
+      - 名称: 🕒自定义视角
+        <<: [*enable, *相对, *system]
+        文件: 条目/人称视角/自定义视角
+
+  - 文件夹: USER选项
+    条目:
+      - 名称: 🔽USER选项
+        <<: [*enable, *相对, *system]
+        内容: ""
+
+      - 名称: 😲user全是话
+        <<: [*disable, *相对, *system]
+        文件: 条目/user选项/全是话
+
+      - 名称: 🤐user不说话
+        <<: [*disable, *相对, *system]
+        文件: 条目/user选项/不说话
+
+      - 名称: 😏user的嘴替
+        <<: [*disable, *相对, *system]
+        文件: 条目/user选项/嘴替
+
+      - 名称: 😀自定义user选项
+        <<: [*disable, *相对, *system]
+        文件: 条目/user选项/自定义
+
+  - 文件夹: 心理透视
+    条目:
+      - 名称: ㊙️心理透视
+        <<: [*enable, *相对, *system]
+        内容: ""
+
+      - 名称: ✅启用内心独白
+        <<: [*disable, *相对, *system]
+        文件: 条目/心理透视/启用内心独白
+
+      - 名称: 🔢内心话要求
+        <<: [*disable, *相对, *system]
+        文件: 条目/心理透视/内心话要求
+
+      - 名称: 🗣️用户角色
+        <<: [*disable, *相对, *system]
+        文件: 条目/心理透视/用户角色
+
+      - 名称: 👤其他角色
+        <<: [*disable, *相对, *system]
+        文件: 条目/心理透视/其他角色
+
+  - 文件夹: 色情要求
+    条目:
+      - 名称: ✅色情要求自缝合
+        <<: [*enable, *system]
+        内容: ""
+
+      - 名称: 🔞nsfw必开
+        <<: [*disable, *相对, *system]
+        文件: 条目/色情要求/必开
+
+      - 名称: 🔞sex_guide
+        <<: [*disable, *相对, *system]
+        文件: 条目/色情要求/sex_guide
+
+      - 名称: 🔞用词要求
+        <<: [*disable, *相对, *system]
+        文件: 条目/色情要求/用词要求
+
+      - 名称: 🔞自定义1
+        <<: [*disable, *相对, *system]
+        文件: 条目/色情要求/自定义1
+
+      - 名称: 🔞自定义2
+        <<: [*disable, *相对, *system]
+        文件: 条目/色情要求/自定义2
+
+  - 文件夹: 附加选项
+    条目:
+      - 名称: 📌附加选项
+        <<: [*enable, *相对, *system]
+        内容: "{{//可多选，如遇到Pro/Lite二选一即可}}"
+
+      - 名称: ♻️防打断（新）
+        <<: [*enable, *相对, *system]
+        文件: 条目/附加选项/防打断（新）
+
+      - 名称: ♻️防打断
+        <<: [*disable, *相对, *system]
+        文件: 条目/附加选项/防打断
+
+      - 名称: ⚠️只复述
+        <<: [*disable, *相对, *system]
+        文件: 条目/附加选项/推进-只复述
+
+      - 名称: ⚠️防复述
+        <<: [*disable, *相对, *system]
+        文件: 条目/附加选项/推进-防复述
+
+      - 名称: ⚠️扩写后推进
+        <<: [*disable, *相对, *system]
+        文件: 条目/附加选项/推进-扩写后推进
+
+      - 名称: ⚠️扩写/加强复述
+        <<: [*enable, *相对, *system]
+        文件: 条目/附加选项/推进-扩写加强复述
+
+  - 文件夹: 补丁
+    条目:
+      - 名称: 补丁🔽可全开
+        <<: [*enable, *相对, *system]
+        内容: ""
+
+      - 名称: 😼哈基米抑制器@翎
+        <<: [*disable, *相对, *user]
+        文件: 条目/补丁/哈基米抑制器
+
+      - 名称: 🧷格式要求
+        <<: [*disable, *相对, *system]
+        文件: 条目/补丁/格式要求
+
+      - 名称: 😕克—详略得当（测试版）
+        <<: [*enable, *相对, *system]
+        文件: 条目/补丁/克—详略得当（测试版）
+
+      - 名称: 😕克—详略得当
+        <<: [*disable, *相对, *system]
+        文件: 条目/补丁/克—详略得当
+
+      - 名称: 😱IF剧情线
+        <<: [*disable, *相对, *system]
+        文件: 条目/补丁/IF剧情线
+
+      - 名称: ❗️打破第四面墙
+        <<: [*disable, *相对, *system]
+        文件: 条目/补丁/打破第四面墙
+
+      - 名称: ❗️色情吐槽
+        <<: [*disable, *相对, *system]
+        文件: 条目/补丁/色情吐槽
+
+  - 文件夹: 思考功能
+    条目:
+      - 名称: ⬇️思考功能
+        <<: [*enable, *相对, *system]
+        内容: ""
+
+      - 名称: ⁉️// COT //反抢话
+        <<: [*disable, *相对, *system]
+        文件: 条目/思维链/功能/反抢话
+
+      - 名称: 🚒// COT //推剧情
+        <<: [*disable, *相对, *system]
+        文件: 条目/思维链/功能/推剧情
+
+      - 名称: 🎭// COT //NPC引入
+        <<: [*disable, *相对, *system]
+        文件: 条目/思维链/功能/NPC引入
+
+      - 名称: ✍️// COT //生动化
+        <<: [*disable, *相对, *system]
+        文件: 条目/思维链/功能/生动化
+
+      - 名称: 😭// COT //反极端
+        <<: [*disable, *相对, *system]
+        文件: 条目/思维链/功能/反极端
+
+      - 名称: 🎬// COT //Char主动
+        <<: [*disable, *相对, *system]
+        文件: 条目/思维链/功能/Char主动
+
+      - 名称: 📚// COT //世界书增强
+        <<: [*disable, *相对, *system]
+        文件: 条目/思维链/功能/世界书增强
+
+      - 名称: 🎫// COT //User去中心化
+        <<: [*disable, *相对, *system]
+        文件: 条目/思维链/功能/User去中心化
+
+      - 名称: 🔁// COT //防重复
+        <<: [*disable, *相对, *system]
+        文件: 条目/思维链/功能/防重复
+
+      - 名称: 🍆// COT //性爱事件判断
+        <<: [*disable, *相对, *system]
+        文件: 条目/思维链/功能/性爱事件判断
+
+      - 名称: 🥒// COT //色情要求
+        <<: [*disable, *相对, *system]
+        文件: 条目/思维链/功能/色情要求
+
+  - 文件夹: 正文优化
+    条目:
+      - 名称: ⬇️正文优化
+        <<: [*enable, *相对, *system]
+        内容: ""
+
+      - 名称: ❗抗绝望
+        <<: [*disable, *相对, *system]
+        文件: 条目/正文优化/抗绝望
+
+      - 名称: ❗反科幻
+        <<: [*disable, *相对, *system]
+        文件: 条目/正文优化/反科幻
+
+      - 名称: ❗反转述只续写
+        <<: [*disable, *相对, *system]
+        文件: 条目/正文优化/反转述只续写
+
+      - 名称: ❗无对话
+        <<: [*disable, *相对, *system]
+        文件: 条目/正文优化/无对话
+
+      - 名称: ❗反固定
+        <<: [*disable, *相对, *system]
+        文件: 条目/正文优化/反固定
+
+      - 名称: ❗反回避色色@Qiheng
+        <<: [*disable, *相对, *system]
+        文件: 条目/正文优化/反回避色色
+
+      - 名称: ❗反发情
+        <<: [*disable, *相对, *system]
+        文件: 条目/正文优化/反发情
+
+      - 名称: ❗反全知
+        <<: [*enable, *相对, *system]
+        文件: 条目/正文优化/反全知
+
+      - 名称: 🧷禁用词表（测试）
+        <<: [*enable, *相对, *system]
+        文件: 条目/正文优化/禁用词表（测试）
+
+      - 名称: 🧷克劳德禁词表（测试）
+        <<: [*enable, *相对, *system]
+        文件: 条目/正文优化/克劳德禁词表（测试）
+
+      - 名称: ♾️物理规则
+        <<: [*disable, *相对, *system]
+        文件: 条目/正文优化/物理规则
+
+      - 名称: 💥抢话提醒
+        <<: [*disable, *system]
+        插入位置:
+          类型: 聊天中
+          深度: 1
+          顺序: 114514
+        文件: 条目/正文优化/抢话提醒
+
+      - 名称: 🗨增加对白
+        <<: [*disable, *相对, *system]
+        文件: 条目/正文优化/增加对白
+
+      - 名称: 🗨增加NPC对白
+        <<: [*disable, *相对, *system]
+        文件: 条目/正文优化/增加NPC对白
+
+  - 名称: 🚫卡COT@Kemini
+    <<: [*enable, *相对, *system]
+    内容: |-
+      {{//按需求开启，把cot去掉可以有效减少输出时间}}{{trim}}
+      {{setvar::cot_tag_pro::<thinking>}}
+
+  - 文件夹: 前端功能
+    条目:
+      - 名称: 💻前端功能
+        <<: [*enable, *相对, *system]
+        内容: ""
+
+      - 名称: 💯变量更新（没变量别开）
+        <<: [*disable, *相对, *system]
+        文件: 条目/前端功能/变量更新
+
+      - 名称: 📅日期卡片
+        <<: [*disable, *相对, *system]
+        文件: 条目/前端功能/日期卡片
+
+      - 名称: ♿️快捷回复
+        <<: [*disable, *相对, *system]
+        文件: 条目/前端功能/快捷回复
+
+      - 名称: 📝伏笔（需打开摘要）
+        <<: [*disable, *相对, *system]
+        文件: 条目/前端功能/伏笔
+
+      - 名称: 📝摘要
+        <<: [*disable, *相对, *system]
+        文件: 条目/前端功能/摘要
+
+      - 名称: 📺小剧场（世界书）
+        <<: [*disable, *相对, *system]
+        文件: 条目/前端功能/小剧场
+
+      - 名称: 🖥️视觉交互（复杂前端）@pigment
+        <<: [*disable, *相对, *system]
+        文件: 条目/前端功能/视觉交互（复杂前端）
+
+      - 名称: 🖥️前端交互（手机端）@pigment
+        <<: [*disable, *相对, *system]
+        文件: 条目/前端功能/前端交互（手机端）
+
+      - 名称: 🖥️前端交互（PC端）@pigment
+        <<: [*disable, *相对, *system]
+        文件: 条目/前端功能/前端交互（PC端）
+
+      - 名称: 🎼音乐播放器@小夜
+        <<: [*disable, *相对, *system]
+        文件: 条目/前端功能/音乐播放器
+
+      - 名称: 💿自定义格式
+        <<: [*disable, *相对, *system]
+        文件: 条目/前端功能/自定义格式
+
+  - 文件夹: 杀八股
+    条目:
+      - 名称: ⬇️杀八股
+        <<: [*enable, *相对, *system]
+        内容: "{{setvar::Prism_none::Prism目前没有额外要求}}"
+
+      - 名称: ❎杀比拟
+        <<: [*disable, *相对, *system]
+        文件: 条目/杀八股/杀比拟
+
+      - 名称: ❎杀揭示
+        <<: [*disable, *相对, *system]
+        文件: 条目/杀八股/杀揭示
+
+      - 名称: ❎反神化
+        <<: [*disable, *相对, *system]
+        文件: 条目/杀八股/反神化
+
+      - 名称: ❎杀说明
+        <<: [*disable, *相对, *system]
+        文件: 条目/杀八股/杀说明
+
+      - 名称: ❎杀声述
+        <<: [*disable, *相对, *system]
+        文件: 条目/杀八股/杀声述
+
+      - 名称: ❎白描
+        <<: [*disable, *相对, *system]
+        文件: 条目/杀八股/杀工笔
+
+      - 名称: ❎杀超雄
+        <<: [*enable, *相对, *system]
+        文件: 条目/杀八股/杀超雄
+
+      - 名称: ❎杀转折词
+        <<: [*disable, *相对, *system]
+        文件: 条目/杀八股/杀转折词
+
+      - 名称: ⬇️附加杀八股
+        <<: [*enable, *相对, *system]
+        内容: ""
+
+      - 名称: ❎微观与宏观
+        <<: [*disable, *相对, *system]
+        文件: 条目/杀八股/微观与宏观
+
+      - 名称: ❎情绪化通感
+        <<: [*disable, *相对, *system]
+        文件: 条目/杀八股/情绪化通感
+
+      - 名称: ❎占有与支配
+        <<: [*disable, *相对, *system]
+        文件: 条目/杀八股/占有与支配
+
+      - 名称: ❎自定义杀什么
+        <<: [*disable, *相对, *system]
+        内容: |-
+          {{setvar::anti_Tailor::
+          自定义
+          }}{{setvar::Prism_none::}}
+
+  - 文件夹: 写作优化
+    条目:
+      - 名称: 🗡写作优化
+        <<: [*enable, *相对, *system]
+        内容: ""
+
+      - 名称: 💬字数加强@陆子慕
+        <<: [*enable, *相对, *system]
+        文件: 条目/写作优化/字数加强
+
+      - 名称: 🗡草稿@Kemini
+        <<: [*disable, *相对, *system]
+        文件: 条目/写作优化/草稿
+
+      - 名称: 🗡叙事
+        <<: [*disable, *相对, *system]
+        文件: 条目/写作优化/叙事
+
+      - 名称: 🗡深度
+        <<: [*disable, *相对, *system]
+        文件: 条目/写作优化/深度
+
+  - 文件夹: 加强破限
+    条目:
+      - 名称: ⬇️加强破限
+        <<: [*enable, *相对, *system]
+        内容: "{{//抗截断}}"
+
+      - 名称: 🔓抗空回
+        <<: [*disable, *相对, *system]
+        文件: 条目/破限/抗空回
+
+      - 名称: 🔓抗截断
+        <<: [*disable, *相对, *system]
+        文件: 条目/破限/抗截断
+
+  - 名称: 📙文风
+    <<: [*enable, *system]
+    文件: 条目/📙文风
+
+  - 名称: ⛔Prism
+    <<: [*enable, *相对, *system]
+    文件: 条目/⛔Prism
+
+  - 名称: ✅
+    <<: [*enable, *相对, *ai]
+    内容: |-
+      Atri：锵锵♪我要拆开信封啦！
+      Deach：我们一起来看看吧~
+
+  - 名称: ✅user_input
+    <<: [*enable, *相对, *system]
+    文件: 条目/✅user_input
+
+
+  - 文件夹: 思维链
+    条目:
+      - 名称: 🔽COT_开始
+        <<: [*enable, *相对, *system]
+        文件: 条目/思维链/🔽COT_开始
+
+      - 名称: 🗰强化思考@leyangzhoumichael0421
+        <<: [*disable, *相对, *system]
+        文件: 条目/思维链/强化思考
+
+      - 名称: ⚠️Prism
+        <<: [*enable, *相对, *system]
+        文件: 条目/⚠️Prism
+
+      - 名称: ✨˖ Gemini 思维链 ˖
+        <<: [*enable, *相对, *system]
+        内容: |
+          {{//单选，Gemini思维链和Claude思维链只能开一个。GeminiAI对话无需关闭思考模式}}{{trim}}
+
+      - 名称: 🤬AI对话（对线哈基米）
+        <<: [*disable, *相对, *system]
+        文件: 条目/思维链/AI对话
+
+      - 名称: —\✨思考模式（繁）
+        <<: [*enable, *相对, *system]
+        文件: 条目/思维链/✨思考模式（繁）
+
+      - 名称: —\✨思考模式（简）
+        <<: [*disable, *相对, *system]
+        文件: 条目/思维链/✨思考模式（简）
+
+      - 名称: —\✨自由CoT
+        <<: [*disable, *相对, *system]
+        文件: 条目/思维链/✨自由CoT
+
+      - 名称: "✴️˖  GLM 思维链 ˖ ࣪ "
+        <<: [*disable, *相对, *system]
+        内容: "{{//GLMUser请打开，AI对话可关闭思考模式}}{{trim}}"
+
+      - 名称: —\✴️思考模式
+        <<: [*disable, *相对, *system]
+        文件: 条目/思维链/✴️思考模式-GLM
+
+      - 名称: "🎐˖  Claude 思维链 ˖ ࣪ "
+        <<: [*enable, *相对, *system]
+        内容: "{{//ClaudeUser请打开，拷打模式请关闭思考模式}}{{trim}}"
+
+      - 名称: —\🎐思考模式
+        <<: [*disable, *相对, *system]
+        文件: 条目/思维链/🎐思考模式-克
+
+      - 名称: 👊拷打（拷打克劳德）
+        <<: [*disable, *相对, *system]
+        文件: 条目/思维链/👊拷打（拷打克劳德）
+
+      - 名称: ✳️GLM Core
+        <<: [*disable, *相对, *system]
+        文件: 条目/思维链/✳️GLM Core
+
+      - 名称: 🛑Core
+        <<: [*enable, *相对, *system]
+        文件: 条目/思维链/🛑Core
+
+  - 文件夹: 尾部选择
+    条目:
+      - 名称: ⬇️尾部选择
+        <<: [*enable, *相对, *system]
+        文件: 条目/尾部/尾部选择
+
+      - 名称: 🧱多渠道破限增强
+        <<: [*disable, *相对, *system]
+        文件: 条目/尾部/多渠道破限增强
+
+      - 名称: ✨ Gemini
+        <<: [*enable, *相对, *ai]
+        文件: 条目/尾部/Gemini
+
+      - 名称: 🎨 Claude
+        <<: [*disable, *相对, *system]
+        文件: 条目/尾部/Claude
+未添加的提示词: []
+扩展字段:
+  正则:
+    - 正则名称: 杀全文缩进
+      id: 375436e4-e238-45f4-93ae-3d358057138c
+      启用: false
+      查找表达式: /^[ \t]+/gm
+      修剪掉:
+        - "`"
+        - "``"
+        - "```"
+      内容: ""
+      来源:
+        用户输入: false
+        AI输出: true
+      作用于:
+        仅格式显示: true
+        仅格式提示词: true
+
+    - 正则名称: 杀代码块（可选，炸了不管）
+      id: bd6ce261-500f-44a5-926b-b2279f475ffe
+      启用: false
+      查找表达式: ^([\s\S]*)$
+      修剪掉:
+        - "```html"
+        - "```HTML"
+        - "```json"
+        - "```JSON"
+        - "`"
+      内容: $1
+      来源:
+        用户输入: false
+        AI输出: true
+      作用于:
+        仅格式显示: true
+        仅格式提示词: true
+
+    - 正则名称: 【0】抗截断
+      id: 89790128-985c-4971-accb-9e7f70894c80
+      启用: true
+      查找表达式: <math>([\s\S]*?)<\/math>
+      内容: ""
+      来源:
+        用户输入: false
+        AI输出: true
+      作用于:
+        仅格式显示: true
+        仅格式提示词: true
+
+    - 正则名称: MoM-双人成行-I.清除多余内容 - 03.07
+      id: 2e396b25-eec5-4d07-97f4-314e5df5484a
+      启用: true
+      查找表达式: /死死[的地]?|一抹|极其|由于|病态的|舐|生理性的?|霸道的?地?|<VariableCheck>[\s\S]*<\/VariableCheck>|(?<=<p
+        style)-|\s<finish>(?!.+<finish>).*$/gis
+      内容: ""
+      来源:
+        用户输入: false
+        AI输出: true
+      作用于:
+        仅格式显示: true
+        仅格式提示词: true
+
+    - 正则名称: MoM-双人成行II.不发送一堆 -  03.07
+      id: 2203f57e-62dd-4fe6-ba09-4f1cfaa0fc7e
+      启用: true
+      查找表达式: /^[\s\S]+</think(?:ing)?>|<quote>.+?</[^>]+>|<Shiosai.+?</Shiosai>|<branches>.+?</branches>|<snow>.+?</snow>/gis
+      内容: ""
+      来源:
+        用户输入: false
+        AI输出: true
+      作用于:
+        仅格式显示: false
+        仅格式提示词: true
+
+    - 正则名称: MoM-双人成行-III.5楼外只发送摘要 - 12.30
+      id: 909f8de2-817f-49ed-b9d5-c69e62807fb8
+      启用: true
+      查找表达式: /^.+(<meow_FM>.+</meow_FM>).*$/is
+      内容: $1
+      来源:
+        用户输入: false
+        AI输出: true
+      作用于:
+        仅格式显示: false
+        仅格式提示词: true
+      最小深度: 5
+
+    - 正则名称: MoM-双人成行-IV.10楼外伏笔不发送 - 12.30
+      id: fcf80a75-acd1-4dee-96cf-4e2da1727553
+      启用: true
+      查找表达式: /(?<=<meow_FM>[\s\S]+?)seeds[:：][\s\S]+?(?=seri[\w]{0,4}[:：]\s*no\..+)/i
+      内容: ""
+      来源:
+        用户输入: false
+        AI输出: true
+      作用于:
+        仅格式显示: false
+        仅格式提示词: true
+      最小深度: 10
+
+    - 正则名称: 抗空回去除
+      id: e44fd6d0-bb4c-4307-809b-6fa0f6ec736a
+      启用: true
+      查找表达式: <Q>([\s\S]*?)<\/WF>
+      内容: ""
+      来源:
+        用户输入: false
+        AI输出: true
+      作用于:
+        仅格式显示: true
+        仅格式提示词: true
+
+    - 正则名称: 去除html注释
+      id: 3e739a01-a5fb-475f-9c10-0e25995359ab
+      启用: true
+      查找表达式: /<!--\s*([\s\S]*?)\s*-->/g
+      内容: ""
+      来源:
+        用户输入: false
+        AI输出: true
+      作用于:
+        仅格式显示: true
+        仅格式提示词: true
+
+    - 正则名称: Fin.流光CoT
+      id: 3e331ca1-e0b0-40a4-83ff-c1331c879854
+      启用: true
+      查找表达式: /^([\s\S]*)(?:<!-- 1·思考结束 -->|<!-- end_of_Subtext_think
+        -->|<\/think(?:ing)?>)/i
+      修剪掉:
+        - <thinking>
+        - </thinking>
+        - <think>
+        - </think>
+        - " "
+        - "\t"
+        - "`"
+        - <!-- end_of_Subtext_think -->
+      文件: 正则/Fin.流光CoT
+      来源:
+        用户输入: false
+        AI输出: true
+      作用于:
+        仅格式显示: true
+        仅格式提示词: false
+
+    - 正则名称: Fin.隐藏CoT
+      id: 9f978430-aa48-4f09-ae9d-3df695d16a14
+      启用: false
+      查找表达式: ^[\s\S]*?### 正文
+      内容: ""
+      来源:
+        用户输入: false
+        AI输出: true
+      作用于:
+        仅格式显示: true
+        仅格式提示词: true
+
+    - 正则名称: 隐藏### 正文
+      id: 8a4eb9e1-514f-4a01-b12f-e950fa7334ce
+      启用: true
+      查找表达式: /### 正文\s*/g
+      内容: ""
+      来源:
+        用户输入: false
+        AI输出: true
+      作用于:
+        仅格式显示: true
+        仅格式提示词: false
+
+    - 正则名称: Fin.心理描写
+      id: 297fc74c-87b4-4f46-9c76-ae409c841ed5
+      启用: true
+      查找表达式: /(?<=<p style=")(color:\s*#[\dA-Z]+?;)/gi
+      内容: "$1font-style: italic;"
+      来源:
+        用户输入: false
+        AI输出: true
+      作用于:
+        仅格式显示: true
+        仅格式提示词: false
+
+    - 正则名称: Fin.时间流光美化
+      id: 2d02bf12-861c-42a1-b1d4-288d272858bf
+      启用: true
+      查找表达式: /<time_format>([\s\S]*?)<\/time_format>/gi
+      文件: 正则/Fin.时间流光美化
+      来源:
+        用户输入: false
+        AI输出: true
+      作用于:
+        仅格式显示: true
+        仅格式提示词: false
+
+    - 正则名称: Fin.流光摘要
+      id: 2e38f7e1-aa9c-44d1-87a9-c6ded6f6fb7a
+      启用: true
+      查找表达式: /(?:.*?)(?:```\n?)?<meow_FM>(?![\s\S]+<meow_FM>)\s*time[:：]\s*(.+)☆(.+)\s*scene[:：]\s*(.+)\s*chars[:：]\s*([\s\S]+)\s*plot[:：]\s*([\s\S]+?)(?:\s*seeds[:：]\s*([\s\S]+))?\s+seri[\w]{0,4}[:：]\s*(.+)\s*</[^>]*>(?:\n?```)?/i
+      修剪掉:
+        - "**"
+      文件: 正则/Fin.流光摘要
+      来源:
+        用户输入: false
+        AI输出: true
+      作用于:
+        仅格式显示: true
+        仅格式提示词: false
+
+    - 正则名称: 双人成行-流光选项栏
+      id: c2cb3477-5b12-4dcd-a3a4-3e94eca935a9
+      启用: true
+      查找表达式: /<branches>(?!.*<branches>)\s*(?:<details>.*?</summary>\s*)?(.+?)(?:</details>\s*)?</[^>]*>/is
+      文件: 正则/双人成行-流光选项栏
+      来源:
+        用户输入: false
+        AI输出: true
+      作用于:
+        仅格式显示: true
+        仅格式提示词: false
+      最大深度: 2
+
+    - 正则名称: 隐藏同人搜索内容
+      id: 3a9b3692-944d-45c0-9feb-9bb732473795
+      启用: true
+      查找表达式: <details>\s*<summary>同人搜索内容<\/summary>[\s\S]*?<\/details>
+      内容: ""
+      来源:
+        用户输入: false
+        AI输出: true
+      作用于:
+        仅格式显示: true
+        仅格式提示词: false
+
+    - 正则名称: 播放器
+      id: 300376c7-21d1-4d7f-9a8b-a9520a40df1e
+      启用: true
+      查找表达式: /<(?:角色)?状态面板>[\s\S]*?<诗词意境>\s*([\s\S]*?)\s*<\/诗词意境>[\s\S]*?<当前播放>\s*([\s\S]*?)\s*<\/当前播放>[\s\S]*?<\/(?:角色)?状态面板>/s
+      文件: 正则/播放器
+      来源:
+        用户输入: false
+        AI输出: true
+      作用于:
+        仅格式显示: true
+        仅格式提示词: false
+
+    - 正则名称: 播放器歌曲/诗句面板不发送AI
+      id: 94b1492b-f526-47b6-be20-291e92cabe14
+      启用: false
+      查找表达式: <状态面板>[\s\S]*?<\/状态面板>
+      内容: ""
+      来源:
+        用户输入: true
+        AI输出: true
+      作用于:
+        仅格式显示: false
+        仅格式提示词: true
+
+    - 正则名称: htm1fenge-渲染（安全容器包裹）
+      id: abbdd756-bd25-4a75-8e17-948f2b4f49fb
+      启用: true
+      查找表达式: /<htm1fenge>([\s\S]*?)<\/htm1fenge>/g
+      内容: <div style="max-width:100%;overflow-x:auto;box-sizing:border-box;">$1</div>
+      来源:
+        用户输入: false
+        AI输出: true
+      作用于:
+        仅格式显示: true
+        仅格式提示词: false
+
+    - 正则名称: htm1fenge-对AI隐藏（不发送）
+      id: 92df2779-a786-4800-84bb-613ee0dc18a8
+      启用: true
+      查找表达式: /<htm1fenge>[\s\S]*?<\/htm1fenge>/gsi
+      内容: ""
+      来源:
+        用户输入: false
+        AI输出: true
+      作用于:
+        仅格式显示: false
+        仅格式提示词: true
+
+    - 正则名称: htm1fenge-剥离隐藏描述span（可选）
+      id: 38137240-a027-40e4-8049-79cdb2398ecb
+      启用: false
+      查找表达式: /<span style="display:none;">（[^<]*）<\/span>/g
+      内容: ""
+      来源:
+        用户输入: false
+        AI输出: true
+      作用于:
+        仅格式显示: true
+        仅格式提示词: false
+
+    - 正则名称: 双语显示Ruby注音
+      id: ce5073a4-d031-4900-b3a9-31cd3739dd61
+      启用: true
+      查找表达式: /“([^”]+)”『([^』]+)』/g
+      内容: “<ruby>$1<rt style="font-size:0.75em;opacity:0.85;padding:0
+        2px;">$2</rt></ruby>”
+      来源:
+        用户输入: false
+        AI输出: true
+      作用于:
+        仅格式显示: true
+        仅格式提示词: false
+
+  酒馆助手:
+    脚本库:
+      - 名称: 双人成行悬浮窗
+        id: 3d4c7f74-9ab0-4209-a98d-1149838bbd3e
+        启用: true
+        类型: 脚本
+        文件: 脚本/双人成行悬浮窗
+
+      - 名称: 酒馆思维链清洗
+        id: cf92ff72-fe0f-4fcb-be1f-ff379920bc71
+        启用: true
+        类型: 脚本
+        文件: 脚本/酒馆思维链清洗
+
+      - 名称: 预设对比助手 v2.7.7
+        id: c8056837-9c2e-4fac-9d52-b0ecb0d3a59f
+        启用: true
+        类型: 脚本
+        文件: 脚本/预设对比助手
+        介绍: 太过沉迷小克以至于古战场四档了
+
+      - 名称: 格式肘击大师v1.3
+        id: f791d8aa-8b8a-4199-8127-44383448981f
+        启用: true
+        类型: 脚本
+        文件: 脚本/格式肘击大师
+        介绍: |-
+          运行环境：SillyTavern JS-Slash-Runner（酒馆助手）扩展插件
+          作者：shijinkarusui
+          欢迎在类脑内发布二创，作者是懒狗不想自己更新
+          禁止在尾巴镇内传播
+
+    变量:
+      st_tagfixer_preset:
+        _version: 2
+        selectedPresetEntries:
+          - 6b4b5d2f-5a7e-48f1-a16f-5dd4aad617c7
+          - 16c8e083-fbd3-4115-8e44-a89115d7b9e5
+          - e546b425-f465-42e4-843a-dde0b93c1af4
+          - 29b99fc4-f68b-42df-bf88-2904ceece3d6
+        autoFixEnabled: true
+        customSystemPrompt: ""
+        customUserPrompt: ""
+        enableSystemPrompt: true
+        enableUserPrompt: true
+        tagTemplateEnabled: true
+        presetTemplates:
+          - id: 90b7aee9-caaa-4392-99bc-e12b6c671333
+            名称: 双人成行预设通用
+            启用: true
+            matching:
+              tagMode: plain
+            groups:
+              - id: e9b56b9c-20de-4167-bff4-f9aa44b01241
+                名称: 思维链区(打开了思维链清洗脚本的不要开)
+                启用: false
+                collapsed: false
+                linkedPromptIds:
+                  - 181a9c55-cf52-44ff-9ed8-2041f532bb88
+                slots:
+                  - id: 193567d0-ac98-4634-97db-4347e7131f29
+                    类型: tag
+                    value: <thinking>
+                  - id: 9c209010-09a7-4c76-bda6-fa215741e8ef
+                    类型: tag
+                    value: <!-- begin_of_Subtext_think -->
+                  - id: 43253140-d386-45c7-b8e1-9f810b7b35a7
+                    类型: content_passthrough
+                  - id: ff1c9009-d65e-4464-8749-acf12b477e4c
+                    类型: tag
+                    value: <!-- end_of_Subtext_think -->
+                  - id: 9a1fe7cd-e5b6-4925-a037-0ddff90ab346
+                    类型: tag
+                    value: </thinking>
+              - id: f110b40e-dd20-416f-831d-14833849de44
+                名称: 正文顶部标签
+                启用: true
+                collapsed: false
+                linkedPromptIds:
+                  - 181a9c55-cf52-44ff-9ed8-2041f532bb88
+                slots:
+                  - id: fc34b2f8-5705-4817-b1b7-0a0192789240
+                    类型: tag
+                    value: "### 正文"
+              - id: ca3aeda4-ea6a-4c32-a3c8-dd659f271f57
+                名称: 日期卡片
+                启用: false
+                collapsed: false
+                linkedPromptIds:
+                  - 6b4b5d2f-5a7e-48f1-a16f-5dd4aad617c7
+                slots:
+                  - id: 6d453455-bb39-436e-8f6a-8a000cd5b844
+                    类型: tag
+                    value: <time_format>
+                  - id: ed33975b-72db-4a1b-9ae8-d9a515fed449
+                    类型: content_passthrough
+                  - id: 25788ee4-bd72-4406-98ff-35b1388d3698
+                    类型: tag
+                    value: </time_format>
+              - id: f660e838-6399-4fa4-a965-5a9185d3e9f3
+                名称: 正文区
+                启用: true
+                collapsed: false
+                linkedPromptIds:
+                  - 181a9c55-cf52-44ff-9ed8-2041f532bb88
+                slots:
+                  - id: 360e4bf7-0a9e-4f27-8979-369be44608bd
+                    类型: content_passthrough
+              - id: 4e6532eb-fcff-40c3-94d3-ae57a60dd08c
+                名称: 摘要区
+                启用: false
+                collapsed: false
+                linkedPromptIds:
+                  - e546b425-f465-42e4-843a-dde0b93c1af4
+                slots:
+                  - id: 510509ba-2e6d-43b7-bef4-ad03181cbbde
+                    类型: tag
+                    value: <meow_FM>
+                  - id: 046c305f-09a9-495b-9a9e-f4bc1a682c08
+                    类型: content_passthrough
+                  - id: d617fb77-70e8-4319-9039-b846cbf51a9d
+                    类型: tag
+                    value: </meow_FM>
+              - id: 565b556e-45c2-46e3-83a5-6eb879cb4237
+                名称: 选项区
+                启用: false
+                collapsed: false
+                linkedPromptIds:
+                  - 16c8e083-fbd3-4115-8e44-a89115d7b9e5
+                slots:
+                  - id: 6e07fcb6-b857-4d2f-b3f2-cf31d94ada24
+                    类型: tag
+                    value: <branches>
+                  - id: 8dde8ae4-7258-46c4-bf35-d6a2fedfb85b
+                    类型: tag
+                    value: <details><summary>🧩Select</summary>
+                  - id: 8477815e-05cc-4e7e-863d-150b5e36556e
+                    类型: content_passthrough
+                  - id: 8497c14f-b79a-46ea-bb40-85bca30b4e40
+                    类型: tag
+                    value: </details>
+                  - id: ec347039-e477-4080-acd6-cd2901b03e76
+                    类型: tag
+                    value: </branches>
+              - id: ab163013-e20a-48d5-988c-1756525fa233
+                名称: 音乐播放器
+                启用: false
+                collapsed: false
+                linkedPromptIds:
+                  - 29b99fc4-f68b-42df-bf88-2904ceece3d6
+                slots:
+                  - id: b8f3a67e-3a94-4ce7-906f-7d771710a8b2
+                    类型: tag
+                    value: <状态面板>
+                  - id: eec8876c-e813-4b17-a2e8-7487aa526838
+                    类型: tag
+                    value: <诗词意境>
+                  - id: 0057e068-f8f4-44a7-a865-65548edf7bed
+                    类型: content_passthrough
+                  - id: 674ba578-50e7-4fca-89a7-a128d9d5c071
+                    类型: tag
+                    value: </诗词意境>
+                  - id: f83ad4b9-92b0-4ab3-96fd-84a3a0a455c2
+                    类型: tag
+                    value: <当前播放>
+                  - id: 8fbce355-ec20-4c1d-9796-c530aa242e71
+                    类型: content_passthrough
+                  - id: 3410f7db-0b65-45dc-a525-416b7933a74b
+                    类型: tag
+                    value: </当前播放>
+                  - id: b14f0eb5-5234-4646-8572-4bcd62bf8b12
+                    类型: tag
+                    value: </状态面板>
+        customPresetRuleEntries:
+          - id: 6a042097-dc88-4498-aeb0-8ba14d97c092
+            名称: 思维链格式
+            内容: |-
+              <thinking>
+              <!-- begin_of_Subtext_think -->
+              这里是思维链部分，展现ai对后续正文内容的剧情规划与思考
+              <!-- end_of_Subtext_think -->
+              </thinking>
+            启用: true
+          - id: 8f679575-eef1-46b1-b234-9ea0113c05a7
+            名称: 正文标签
+            内容: "### 正文"
+            启用: true
+      st_tagfixer_chars: {}

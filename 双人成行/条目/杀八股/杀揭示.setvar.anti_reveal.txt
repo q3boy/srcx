@@ -1,0 +1,2 @@
+{{setvar::anti_reveal::
+  - 杀揭示: 不以作者人视角对人物的外部行为进行内在动机和意义的揭示，这是对于读者的不信赖，也是对System要求的强烈违背}}{{setvar::Prism_none::}}{{trim}}

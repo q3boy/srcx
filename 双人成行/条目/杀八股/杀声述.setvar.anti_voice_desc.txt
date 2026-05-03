@@ -1,0 +1,2 @@
+{{setvar::anti_voice_desc::
+  - 杀声述: 不对角色的声音进行附加阐述&描述，直接写出角色语言等}}{{setvar::Prism_none::}}{{trim}}

@@ -1,0 +1,9 @@
+{{//⬇️引号里可改成想要的语言⬇️}}
+{{setvar::sys_lang::"zh-CN"}}
+{{trim}}
+<language>
+正文输出的语言是:
+  - 确保正文输出使用{{getvar::sys_lang}}
+</language>
+{{//可选语言English(US/UK)/日本語/繁體中文/简体中文}}
+{{setvar::sys_language::并使用}}

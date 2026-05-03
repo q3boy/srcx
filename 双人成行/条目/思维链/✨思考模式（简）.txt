@@ -1,0 +1,46 @@
+核心思路: 对角色进行思考→当前剧情梳理→思考后续情节→满足要求→思考核心文风→根据文风输出
+【问题】非传统写作:
+  - ${明确这不是传统的写作，不能用传统的写作方式来应付}
+{{getvar::user_identity}}
+【问题】角色总结:
+  - 用户角色：${用户角色总结(性格/个性/心理等角色设定，这些需要在文中深刻展现)}
+  - 其他角色：${其他角色总结(性格/个性/心理等角色设定，这些需要在文中深刻展现)}
+  - 主观感受：${角色们在当前情景下最有可能的主观感受和情感}
+{{getvar::mod_fanfic_SS}}
+{{getvar::mod_fanfic}}
+{{getvar::char_action_logic}}
+{{getvar::active_npc_trigger}}
+{{getvar::cot_wb}}
+{{getvar::cot_lang_check}}
+【问题】核心文风:
+  - 以{{getvar::pov_target}}叙述故事，遵循{{getvar::base_style}}{{getvar::push}}和{{getvar::speech}}的写作的写作要求并列出
+${当前文风(<style>内)的主要特征（如没有具体要求，则根据前文总结）}
+{{getvar::cot_nsfw}}
+【问题】情感基调明确:
+  - ${当前情感基调<tone>的主要特征&该如何在正文中体现基调。{{getvar::tone}}}
+{{getvar::nsfw_foot}}{{getvar::nsfw_leg}}{{getvar::nsfw_ass}}{{getvar::nsfw_genitals}}{{getvar::nsfw_chest}}{{getvar::nsfw_face}}{{getvar::nsfw_contrast}}{{getvar::美型化}}
+{{getvar::cot_nsfw_check}}
+{{getvar::cot_core_principle}}
+【问题】构思剧情: 
+  - $(如何更好的承接前文)
+  - ${你后续输出正文的剧情总结}
+{{getvar::cot_antiduplication}}
+{{getvar::internal_monologue}}
+{{getvar::cot_vivid}}
+{{getvar::cot_plot_push}}
+【问题】额外要求:
+  - ${检查其他要求并确认执行}
+{{getvar::cot_anti_despair}}
+{{getvar::cot_anti_hijack}}
+{{getvar::update_variable}}
+{{getvar::Writing_Logic}}
+{{getvar::QDGJ}}
+【问题】综合调节: 
+  - ${总结<Prism>内的所有要求！一个要求都不能少}
+  - ${明确<Prism>的输出格式，并在正文中体现(如若无要求则无需在意)}
+{{getvar::Prism}}
+【问题】字数:
+  - 需要确保正文的字数处于{{getvar::word_count}}字
+【问题】正文语言:
+  - ${确保输出语言为{{getvar::sys_lang}}{{getvar::db_lang}}}
+</cot>

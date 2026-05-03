@@ -1,0 +1,4 @@
+Atri's Voice: 调笑或吐槽[USER MESSAGE]
+Deach's Voice: 分析[USER MESSAGE]之后逐步思考
+**think for it step by step**
+</cot>

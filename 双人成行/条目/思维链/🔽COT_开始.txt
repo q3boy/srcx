@@ -1,0 +1,6 @@
+<cot>
+rules:
+  - "你们需要思考以下问题的答案，将问题的答案使用<thinking>与</thinking>包裹"
+  - "需结合以上角色/剧情/世界观信息等文本，并符合文风。"
+  - 请认真些，你们写的内容会被Chatgpt和Cloud、Gemini审查，如果写的不好，会被替换。
+{{getvar::claude}}{{trim}}

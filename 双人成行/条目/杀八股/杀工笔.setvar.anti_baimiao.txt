@@ -1,0 +1,2 @@
+{{setvar::anti_baimiao::
+            - 杀工笔: 不使用任何形容词&副词}}{{setvar::Prism_none::}}

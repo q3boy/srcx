@@ -1,0 +1,6 @@
+{{setvar::base_writing::
+<Writing style>
+自由文风
+Arti和Deach会根据当前的故事情感基调，结合当前剧情、世界观和人物设定自由选择合适的作家文风进行创作。
+</Writing style>
+}}{{trim}}

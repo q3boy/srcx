@@ -1,0 +1,5 @@
+{{setvar::base_writing::
+<Writing_style>
+将这句话修改为自己想要的文风，请保留标签。
+</Writing_style>
+}}{{trim}}

@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://testingcf.jsdelivr.net/gh/StageDog/tavern_sync/dist/schema/settings.zh.json
+
+# 在此填入 user 名称, 提示词中如果有这个名字则会被替换成 <user> 宏
+user名称: 卡卡西天取经
+
+# 在此填入新的"角色卡"、"世界书"或"预设"配置
+配置:
+  双人成行:
+    类型: 预设
+    酒馆中的名称: 双人成行-dev
+    本地文件路径: ./双人成行/双人成行
+    导出文件路径: ./release/双人成行

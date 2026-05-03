@@ -1,0 +1,11 @@
+<Prism_tips>
+# 注释内容不算做总正文字数
+Prism: 
+  def: 在正文的每一段前，输出一个html注释，内容为<Prism>内要求的具体提醒，其核心目的是提醒自己Prism内的要求{{getvar::style_love}}{{getvar::RSD}}。
+  example: |
+    <!-- 根据<Prism>内的要求，${具体要求} -->${具体段落一文本}
+    <!-- Prism内的要求，写作时${具体要求} -->${具体段落二文本}
+{{getvar::Prism_love}}
+{{getvar::Prism_RSD}}
+</Prism_tips>
+{{getvar::deep_prism_fomat}}

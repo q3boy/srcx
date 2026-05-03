@@ -1,0 +1,8 @@
+{{//此条目用于告诉AI“你的身份”，主要是用于扮演世界书中某个角色}}
+{{setvar::user_role::此处写上用户所扮演的角色}}
+
+
+<user_char>
+用户扮演角色: {{getvar::user_role}}
+# 正文输出视角务必以{{getvar::user_role}}视角展开（第二或第一人称）
+</user_char>

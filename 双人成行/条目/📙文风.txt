@@ -1,0 +1,10 @@
+<style>
+# 此处为核心文风，是你写文章的重要依据，请务必遵守该风格
+{{getvar::base_writing}}{{getvar::patch}}{{getvar::char}}
+
+<H-Guide>
+{{getvar::sex_4}}
+{{getvar::sex_3}}{{getvar::sex}}{{getvar::sex_1}}{{getvar::sex_2}}
+</H-Guide>
+{{getvar::nsfw_symbols}}
+</style>

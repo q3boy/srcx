@@ -1,0 +1,15 @@
+{
+  "name": "srcx",
+  "version": "5.1.1",
+  "description": "node",
+  "main": "index.js",
+  "scripts": {
+    "build": "node tavern_sync_fix.mjs bundle 双人成行",
+    "clean": "rm -rf release/* && rm -f 双人成行/双人成行.json",
+    "watch": "node tavern_sync_fix.mjs watch 双人成行 -f"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs"
+}

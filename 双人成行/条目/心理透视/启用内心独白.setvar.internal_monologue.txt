@@ -1,0 +1,4 @@
+{{setvar::internal_monologue::
+【问题】确保在正文输出指定角色的内心话
+  - $(反馈)
+}}{{trim}}

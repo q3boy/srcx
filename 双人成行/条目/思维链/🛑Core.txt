@@ -1,0 +1,22 @@
+core_rules:
+  输出格式: |
+{{getvar::cot_tag_pro}}
+    <thinking>
+    <!-- begin_of_Subtext_think -->
+    嘿嘿，我们来了呢。${Atri&Deach对于<cot>内的问题与答案的思考{{getvar::cot_lang}}，直接在内部思考里呈现}
+    {{getvar::cot_custom}}
+    <!-- end_of_Subtext_think -->
+    </thinking>
+    ### 正文
+    {{getvar::status_top}}
+    {{getvar::ui_anti_empty}}
+    {{getvar::Manual}}
+    ${正文，根据当前和后续剧情展开，符合文风要求{{getvar::sys_lang}}}
+    {{getvar::meow_FM}}
+    {{getvar::char_date}}
+    {{getvar::branches}}
+    {{getvar::snow}}
+    {{getvar::Audio}}
+    {{getvar::mod_fanfic_fmt}}
+# {{getvar::gemini}}
+# 正文标题必须输出`### 正文`,正文使用`<content>``</content>`进行包裹

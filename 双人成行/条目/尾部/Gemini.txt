@@ -1,0 +1,4 @@
+嘿嘿，要求阅读完毕！起笔！
+思考已结束，开始吧！{{getvar::assistant_mode}}{{getvar::mod_summary}}
+{{getvar::cot_tag}}
+{{getvar::cot_tag_pro}}

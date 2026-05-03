@@ -1,0 +1,4 @@
+<user_input>
+{{lastusermessage}}
+</user_input>
+{{getvar::hook}}{{getvar::meta}}{{getvar::抑制器}}
