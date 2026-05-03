@@ -20,9 +20,6 @@ jobs:
           node-version: '20' # 或者你需要的版本
           cache: 'npm'
 
-      - name: Install dependencies
-        run: npm install
-
       - name: Run build
         run: npm run build
 
