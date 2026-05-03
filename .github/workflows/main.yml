@@ -20,22 +20,31 @@ jobs:
           node-version: '20' # 或者你需要的版本
           cache: 'npm'
 
+      - name: Install dependencies
+        run: npm install
+
       - name: Run build
         run: npm run build
 
-      - name: Get version from package.json
-        id: get_version
+      - name: Get version and short sha
+        id: vars
         run: |
-          # 使用 node 快速读取 package.json 中的 version
+          # 提取 package.json 版本号
           VERSION=$(node -p "require('./package.json').version")
+          # 提取 7 位短 hash
+          SHORT_SHA=${GITHUB_SHA::7}
+
+          # 写入环境变量供后续步骤使用
           echo "VERSION=$VERSION" >> $GITHUB_ENV
-          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "SHORT_SHA=$SHORT_SHA" >> $GITHUB_ENV
+
+          # 拼接完整的新文件名
+          echo "NEW_FILENAME=双人成行-v${VERSION}-${SHORT_SHA}.json" >> $GITHUB_ENV
 
       - name: Rename release file
         run: |
-          # 确保 release 目录存在
           if [ -f "release/双人成行.json" ]; then
-            mv "release/双人成行.json" "release/双人成行-v${{ env.VERSION }}.json"
+            mv "release/双人成行.json" "release/${{ env.NEW_FILENAME }}"
           else
             echo "Error: release/双人成行.json not found!"
             exit 1
@@ -44,6 +53,8 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: 双人成行-v${{ env.VERSION }}
-          path: release/双人成行-v${{ env.VERSION }}.json
-          retention-days: 30 # 在 GitHub 上保留多少天
+          # 下载时的压缩包名称
+          name: ${{ env.NEW_FILENAME }}
+          # 具体文件路径
+          path: release/${{ env.NEW_FILENAME }}
+          retention-days: 90
