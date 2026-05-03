@@ -17,7 +17,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20' # 或者你需要的版本
+          node-version: '24' # 或者你需要的版本
           cache: 'npm'
 
       - name: Install dependencies
