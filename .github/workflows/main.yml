@@ -1,0 +1,52 @@
+name: 构建预设
+
+on:
+  push:
+    branches:
+      - main  # 监听 main 分支的推送，根据需要修改
+  workflow_dispatch: # 允许手动点击按钮触发
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20' # 或者你需要的版本
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run build
+        run: npm run build
+
+      - name: Get version from package.json
+        id: get_version
+        run: |
+          # 使用 node 快速读取 package.json 中的 version
+          VERSION=$(node -p "require('./package.json').version")
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+
+      - name: Rename release file
+        run: |
+          # 确保 release 目录存在
+          if [ -f "release/双人成行.json" ]; then
+            mv "release/双人成行.json" "release/双人成行-v${{ env.VERSION }}.json"
+          else
+            echo "Error: release/双人成行.json not found!"
+            exit 1
+          fi
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: 双人成行-v${{ env.VERSION }}
+          path: release/双人成行-v${{ env.VERSION }}.json
+          retention-days: 30 # 在 GitHub 上保留多少天
