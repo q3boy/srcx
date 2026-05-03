@@ -58,3 +58,12 @@ jobs:
           # 具体文件路径
           path: release/${{ env.NEW_FILENAME }}
           retention-days: 90
+
+      - name: Create Release and Upload Asset
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ env.VERSION }}
+          name: Release v${{ env.VERSION }}
+          files: release/${{ env.NEW_FILENAME }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
